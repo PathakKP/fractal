@@ -13,30 +13,41 @@ def filter(request):
 	if request.method == 'POST':	
 		import requests
 		quote = request.POST['quote']
-		c=0
-		for each in Tag.objects.all():
-			if quote==each.tag_name:
-			  c=c+1
+		quote1 = request.POST['quote1']
+		if quote1 is None or quote1 =='':
+			if quote:
+				p=Questions.objects.filter(tags__tag_name=quote)
+				context ={ 
+				'filterap':p,
+				}
+				return render(request,'extras/filter.html',context=context)
 
-		if c==0:
-		   if quote=="":
-		   	 notfound1="Enter a tag.."
-		   else:	 
-		     notfound1=quote+" is unavailable"	
-		   return render(request, 'extras/filter.html', {'notfound1':notfound1})
+			else:
+				notfound="Enter Tags Or Category to filter"	
+				return render(request,'extras/filter.html', {'notfound':notfound})		
 
-		else:   
-			
-			p=Tag.objects.get(tag_name=quote)
-			ap=p.questions_set.all()
-			#pp=Category.objects.get(category_name='E')
-			#aap=pp.ap.all()
+		elif quote is None or quote =='':
+			if quote1:
+				p=Questions.objects.filter(category__category_name=quote1)
+				context ={ 
+				'filterap':p,
+				}
+				return render(request,'extras/filter.html',context=context) 
 
-			context ={ 
-			'filterp':p,
-			'filterap':ap,
-			}
-			return render(request,'extras/filter.html',context=context)
+			else:
+				notfound="Enter Tags Or Category to filter"	
+				return render(request,'extras/filter.html', {'notfound':notfound})	
+
+		elif quote and quote1:
+				p=Questions.objects.filter(tags__tag_name=quote,category__category_name=quote1)
+				context ={ 
+				'filterap':p,
+				}
+				return render(request,'extras/filter.html',context=context) 		
+
+	else:
+		notfound="Enter Tags Or Category to filter"		
+		return render(request,'extras/filter.html', {'notfound':notfound})
 def explore(request):
     return render(request, 'extras/explore.html', {})
 
