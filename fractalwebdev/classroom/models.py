@@ -22,12 +22,12 @@ class Archive(models.Model):
 
     class Meta:                   # ordering ka mtlb sorting (here sorting the results by headline)
         ordering = ('session',)        
-'''        
-def get_image_path(instance, filename):
-    return os.path.join('photos', str(instance.id), filename)
-
-class Tentative_Schedule(models.Model):
-    schedule_image = ImageField(upload_to=get_image_path, blank=True, null=True) '''
+class Schedule(models.Model):
+    topic=models.CharField(max_length=200)
+    duration=models.IntegerField(default=0)
+    schedule_date = models.DateTimeField(
+            default=timezone.now)
+    
         
         
 # Create your models here.
