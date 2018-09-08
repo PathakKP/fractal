@@ -39,20 +39,16 @@
 
    
   {% else %}  
-    {% if notfound1 %}
-      {{ notfound1 }}
-    {% else %}
         <table class="table table-striped">  
-         {% for each in filterp.questions_set.all %}
-            <tr>
+         {% for each in filterap %}
+            <tr> 
               <th scope="row">{{ each.id }}</th>
               <td>{{ each.title }}</td>
-              <td>{{ quest.display_category}}</td>
+              <td>{{ each.display_category}}</td>
             </tr>
          {% endfor %}
             </tbody>
         </table>
-    {% endif %}
   {% endif %}
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
