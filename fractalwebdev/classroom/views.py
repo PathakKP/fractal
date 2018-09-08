@@ -21,7 +21,7 @@ def archive(request):
     return render(request, 'classroom/archive.html', {})
 
 @login_required
-def tentative_schedule(request):
-    return render(request, 'classroom/tentative_schedule.html', {})
+def schedule(request):
+    return render(request, 'classroom/schedule.html', {})
 
 # Create your views here.
