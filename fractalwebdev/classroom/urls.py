@@ -7,6 +7,6 @@ urlpatterns = [
 	        path('question/', views.question, name="question"),
 	        path('slide/', views.slide, name="slide"),
 	        path('archive/', views.archive, name="archive"),
-	        path('tentative_schedule/', views.tentative_schedule, name="tentative_schedule"),
+	        path('schedule/', views.schedule, name="schedule"),
 	        
 ]
