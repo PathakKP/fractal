@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 
 def question(request):
 	questions=Questions.objects.all().order_by('-question_date')
-	return render(request, 'extras/explore.html', {'questions': questions})
+	return render(request, 'extras/questions.html', {'questions': questions})
 
 def filter(request):
 	if request.method == 'POST':	
