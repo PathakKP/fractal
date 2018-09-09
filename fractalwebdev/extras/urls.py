@@ -1,14 +1,13 @@
-
 from django.urls import path
 from . import views
 
 urlpatterns = [
-			path('', views.explore, name="explore"),
-			path('questions/', views.question, name="question"),
+			path('', views.question, name="explore"),
+			path('questions/', views.question, name="questions"),
 			
 	       
-	        path('filter/', views.filter, name="filter"),
-	        path('archive/', views.archive, name="archive"),
-          path('resources/', views.resources, name="resources"),
+			path('filter/', views.filter, name="filter"),
+			path('archive/', views.archive, name="archive"),
+			path('resources/', views.resources, name="resources"),
 	        
 ]
