@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, get_object_or_404
 from fractalweb.models import User
-from .models import Questions,Tag,Category
+from .models import Questions,Tag,Category,resourses
 from classroom.models import Question,Archive
 from django.shortcuts import redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -67,7 +67,18 @@ def archive(request):
     return render(request, 'extras/archive.html', {})
 
 def resources(request):
-    return render(request, 'extras/resources.html', {})
+	resources_list=resourses.objects.all().order_by('-date')
+	page = request.GET.get('page', 1)
+
+	paginator = Paginator(resources_list, 10)
+	try:
+		resources = paginator.page(page)
+	except PageNotAnInteger:
+		resources = paginator.page(1)
+	except EmptyPage:
+		resources = paginator.page(paginator.num_pages)
+
+	return render(request, 'extras/resources.html', {'resources': resources})
 
 	
 # Create your views here.
