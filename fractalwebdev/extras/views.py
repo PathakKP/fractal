@@ -4,11 +4,22 @@ from fractalweb.models import User
 from .models import Questions,Tag,Category
 from classroom.models import Question,Archive
 from django.shortcuts import redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def question(request):
-	questions=Questions.objects.all().order_by('-question_date')
-	q1=Questions.objects.all().count()
-	return render(request, 'extras/questions.html', {'questions': questions,'q1':q1})
+	questions_list=Questions.objects.all().order_by('-question_date')
+
+	page = request.GET.get('page', 1)
+
+	paginator = Paginator(questions_list, 10)
+	try:
+		questions = paginator.page(page)
+	except PageNotAnInteger:
+		questions = paginator.page(1)
+	except EmptyPage:
+		questions = paginator.page(paginator.num_pages)
+
+	return render(request, 'extras/questions.html', {'questions': questions})
 
 def filter(request):
 	if request.method == 'POST':	
