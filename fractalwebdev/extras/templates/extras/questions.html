@@ -68,7 +68,7 @@
     <tbody>
        {% for quest in questions %}
           <tr>
-            <th scope="row">{{ quest.id }}</th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td>{{ quest.title }}</td>
             <td>{{ quest.display_tags }}</td>
             <td>{{ quest.category}}</td>
