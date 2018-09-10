@@ -27,7 +27,3 @@ class Schedule(models.Model):
     duration=models.IntegerField(default=0)
     schedule_date = models.DateTimeField(
             default=timezone.now)
-    
-        
-        
-# Create your models here.

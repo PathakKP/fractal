@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'fractalwebdev.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'new_schema',
+        'NAME': 'testdatabase9',
         'USER': 'root',
-        'PASSWORD': 'saumitra@1998',
+        'PASSWORD': 'newpassword',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
