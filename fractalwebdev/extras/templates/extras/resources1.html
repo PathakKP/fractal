@@ -1,11 +1,10 @@
-{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Questions</title>
+	<title>Resources</title>
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -17,18 +16,12 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" async></script>
+
+  <!-- Others : Look scripts in head. Me: Look "async". --> 
 </head>
 
 <body>
 	
-<!--	<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Fluid jumbotron</h1>
-    <p class="lead">Your life's schedule is decided by the contents of this page.</p>
-  </div>
-</div>
--->	
-
   <nav class="navbar navbar-expand-sm bg-light navbar-light " style="margin-bottom: 10px">
   <!-- Brand/logo -->
   <a class="navbar-brand" href="{% url 'home' %}">
@@ -45,34 +38,11 @@
     </li>
   </ul>
 </nav>
-  {% if notfound %}
-    {{ notfound }}  
 
-  {% else %}  
-  <!--table-->
-  	<table class="table table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Tags</th>
-        <th scope="col">Difficulty</th>
-      </tr>
-    </thead>
-     <tbody>
-    
-    {% for each in filterap %}
-
-      <tr> 
-        <th scope="row">{{ each.id }}</th>
-        <td>{{ each.title }}</td>
-        <td>{{ each.display_tags }}</td>
-        <td>{{ each.category }}</td>
-      </tr>
-    {% endfor %}
-    
-     </tbody>    
-    </table>
-  {% endif %}
+<div class="container">
+  <h1>Learn as if you are getting paid for it.</h1>
+  <hr/>
+  <br>
+</div>
 </body>
 </html>

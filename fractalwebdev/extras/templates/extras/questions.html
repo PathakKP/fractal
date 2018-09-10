@@ -44,6 +44,22 @@
       <a class="nav-link" href="{% url 'resources' %}">Resources</a>
     </li>
   </ul>
+
+  <ul class="navbar-nav ml-auto">
+    {% if user.is_authenticated %}
+         <li><p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login' %}">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'signup' %}">Register</a>
+    </li>
+    {% endif %}
+  </ul>
+  </nav>
+
+
 </nav>
       <br/><br/>
       <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'filter' %}">
@@ -78,25 +94,27 @@
   </table>
 
   {% if questions.has_other_pages %}
-    <ul class="pagination">
-      {% if questions.has_previous %}
-        <li><a href="?page={{ questions.previous_page_number }}">&laquo;</a></li>
-      {% else %}
-        <li class="disabled"><span>&laquo;</span></li>
-      {% endif %}
-      {% for i in questions.paginator.page_range %}
-        {% if questions.number == i %}
-          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        {% if questions.has_previous %}
+          <li><a href="?page={{ questions.previous_page_number }}">&laquo;</a></li>
         {% else %}
-          <li><a href="?page={{ i }}">{{ i }}</a></li>
+          <li class="disabled"><span>&laquo;</span></li>
         {% endif %}
-      {% endfor %}
-      {% if questions.has_next %}
-        <li><a href="?page={{ questions.next_page_number }}">&raquo;</a></li>
-      {% else %}
-        <li class="disabled"><span>&raquo;</span></li>
-      {% endif %}
-    </ul>
+        {% for i in questions.paginator.page_range %}
+          {% if questions.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if questions.has_next %}
+          <li><a href="?page={{ questions.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+    </nav>  
   {% endif %}
 
 </body>

@@ -43,7 +43,11 @@ class resourses(models.Model):
     def __str__(self):
         return self.title 
 
-
+    def display_tags1(self):
+        """Create a string for the Genre. This is required to display genre in Admin."""
+        return ', '.join(tags.tag_name for tags in self.tags.all()[:3])
+    
+    display_tags1.short_description = 'Tag' 
 
 
 

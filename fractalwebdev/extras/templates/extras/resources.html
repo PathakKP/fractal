@@ -24,7 +24,7 @@
   
   <nav class="navbar navbar-expand-sm bg-light navbar-light " style="margin-bottom: 10px">
   <!-- Brand/logo -->
-  <a class="navbar-brand" href="../home/home.html">
+  <a class="navbar-brand" href="{% url 'home' %}">
     <img src="#" alt="Fractal" style="width:40px;">
   </a>
   
@@ -39,12 +39,16 @@
   </ul>
 
   <ul class="navbar-nav ml-auto">
+    {% if user.is_authenticated %}
+         <li><p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+    {% else %}
     <li class="nav-item">
       <a class="nav-link" href="../home/login.html">Login</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="../home/register.html">Register</a>
     </li>
+    {% endif %}
   </ul>
   
 </nav>
@@ -69,7 +73,7 @@
   <tbody>
        {% for res in resources %}
           <tr>
-            <th scope="row">{{ res.tags }}</th>
+            <th scope="row">{{ res.display_tags1 }}</th>
             <td>{{ res.title }}</td>
             <td>{{ res.url }}</td>
             <td>{{ res.date}}</td>

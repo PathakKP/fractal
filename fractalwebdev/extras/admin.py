@@ -9,6 +9,6 @@ class QuestionAdmin(admin.ModelAdmin):
 admin.site.register(Questions, QuestionAdmin)
 
 class resorAdmin(admin.ModelAdmin):
-    list_display1 = ( 'tags','title','url','date')
+    list_display1 = ( 'display_tags1','title','url','date')
 admin.site.register(resourses, resorAdmin)
 # Register your models here.
